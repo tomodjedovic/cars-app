@@ -7,7 +7,7 @@ import HttpService from "./HttpService";
     async getAll(){
         try{
             const {data} = await this.client.get("cars");
-            console.log(data);
+
             return data;
         }catch(error){
             console.log(error);

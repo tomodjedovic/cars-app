@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter,Routes,Route,Link } from "react-router-dom";
 import AppCars from "./components/AppCars";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App:React.FC=()=>{
   return(
     <div className="App">
+      <Provider store={store}>
       <BrowserRouter>
       <nav>
         <li>
@@ -16,7 +19,7 @@ const App:React.FC=()=>{
       </Routes>
       
       </BrowserRouter>
-
+      </Provider>
 
     </div>
   )

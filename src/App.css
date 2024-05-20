@@ -6,3 +6,18 @@
 .single-card {
   display: block;
 }
+
+.add-car-form {
+  display: flex;
+  flex-direction: column;
+}
+.AddCar {
+  display: flex;
+  justify-content: center;
+}
+label {
+  width: 80%;
+}
+#gearbox {
+  display: block;
+}

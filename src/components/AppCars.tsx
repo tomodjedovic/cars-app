@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import carService from "../services/CarService";
 
 
-interface Car {
-  brand: "string";
-  model: "string";
+ export interface Car {
+  brand: string;
+  model: string;
   year: number;
   maxSpeed: number;
   isAutomatic: false|true;
-  engine: "string";
+  engine: string;
   numberOfDoors: number;
   id: number;
 }
@@ -30,7 +30,6 @@ const AppCars:React.FC=()=>{
           {cars.map((car)=>(
             
           <div className="single-card" key={car.id}>
-            <h2>Automobil br : {car.id}</h2>
             <h3>Marka : {car.brand}</h3>
             <p>Model : {car.model}</p>
             <p>Year : {car.year}</p>
@@ -38,6 +37,7 @@ const AppCars:React.FC=()=>{
             <p>Engine : {car.engine}</p>
             <p>Gearbox : {car.isAutomatic}</p>
             <p>Number of doors {car.numberOfDoors}</p>
+            <p>id : {car.id}</p>
 
           </div>
           ))}

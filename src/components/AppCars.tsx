@@ -3,9 +3,10 @@ import carService from "../services/CarService";
 import { useDispatch,useSelector } from "react-redux";
 import { selectCars } from "../store/cars/selector";
 import { setCars } from "../store/cars/slice";
+import CarRow from "./CarRow";
 
 
-interface Car {
+export interface Car {
   brand: "string";
   model: "string";
   year: 0;
@@ -35,16 +36,9 @@ const AppCars:React.FC=()=>{
     return(
         <>
       {  cars.map((car)=>(
-        <div key={car.id}>
-            <h3>brand : {car.brand}</h3>
-            <p>model : {car.model}</p>
-            <p>godiste {car.year}</p>
-            <p>max.brzina : {car.maxSpeed}</p>
-            <p>motor : {car.engine}</p>
-            <p>broj vrata : {car.numberOfDoors}</p>
-            <p>id auta : {car.id}</p>
-
-        </div>
+        <ul key={car.id}>
+          <CarRow car={car}/>
+        </ul>
       ))}
         </>
     )

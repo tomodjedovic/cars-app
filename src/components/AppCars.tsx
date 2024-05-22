@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import carService from "../services/CarService";
 import { useDispatch,useSelector } from "react-redux";
-import { selectCars } from "../store/cars/selector";
-import slice, { setCars } from "../store/cars/slice";
+import {selectFilteredCars, selectListOfSelectid } from "../store/cars/selector";
+import slice, { setCars,selectDeselect } from "../store/cars/slice";
 import CarRow from "./CarRow";
-import { useNavigate } from "react-router-dom";
+
 
 export interface Car {
   brand: string;
@@ -19,16 +19,17 @@ export interface Car {
 
 
 const AppCars:React.FC=()=>{
-    const navigate = useNavigate()
-    const dispatch = useDispatch();
-    const cars:Car[] = useSelector(selectCars);
     
-    const deleteFromList=(id:number)=>{
-      carService.deleteCar(id);
-      navigate("/cars");
+    const dispatch = useDispatch();
+    const cars:Car[] = useSelector(selectFilteredCars);
+    const numberOfSelect = useSelector(selectListOfSelectid);
 
-
-    }
+    const handleSelect=(car:Car)=>{
+     console.log(car);
+     dispatch(selectDeselect(car));
+     
+    };
+    
     useEffect(()=>{
        async function fetchCars() {
             const carArr:Car[] = await carService.getAll();
@@ -41,11 +42,13 @@ const AppCars:React.FC=()=>{
     
     return(
         <>
+        <span>br.selektovanih kola : {numberOfSelect}</span>
       {  cars.map((car)=>(
         <ul key={car.id}>
-          <CarRow car={car}/>
-          <button onClick={()=>deleteFromList(car.id)}>Obrisi</button>
+          <CarRow 
+          select={handleSelect} car={car}/>
         </ul>
+        
       ))}
         </>
     )

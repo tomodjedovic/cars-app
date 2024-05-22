@@ -2,11 +2,12 @@ import React from "react";
 import { Car } from "./AppCars";
 
 interface CarProps {
-    car : Car
+    car : Car;
+    select:(car:Car)=>void;
 }
 
 
-const CarRow:React.FC<CarProps>=({car})=>{
+const CarRow:React.FC<CarProps>=({car, select})=>{
     return (
       <li>
         <h3>brand : {car.brand}</h3>
@@ -16,6 +17,7 @@ const CarRow:React.FC<CarProps>=({car})=>{
         <p>motor : {car.engine}</p>
         <p>broj vrata : {car.numberOfDoors}</p>
         <p>id auta : {car.id}</p>
+        <button onClick={()=>select(car)}>selektuj</button>
       </li>
     );
 };

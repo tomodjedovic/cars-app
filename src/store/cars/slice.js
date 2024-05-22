@@ -5,6 +5,7 @@ export const carSlice = createSlice({
   initialState: {
     cars: [],
     search: "",
+    selectidCars:[],
 
   },
   reducers: {
@@ -14,8 +15,20 @@ export const carSlice = createSlice({
     setSearch: (state,action) =>{
       state.search = action.payload
 
-    }
+    },
+    selectDeselect: (state,action)=>{
+      const alredySelected = state.selectidCars.filter(
+        (car)=>car.id===action.payload.id
+        ).length;
+        if(!alredySelected){
+          state.selectidCars = [...state.selectidCars,action.payload];
+        }else{
+          state.selectidCars = state.selectidCars.filter((car)=>
+            car.id!==action.payload.id
+          );
+        };
+    },
   },
 });
-export const { setCars,setSearch } = carSlice.actions;
+export const { setCars,setSearch,selectDeselect } = carSlice.actions;
 export default carSlice.reducer;

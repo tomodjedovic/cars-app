@@ -14,6 +14,22 @@ import HttpService from "./HttpService";
         }
         return []; 
     }
+
+    async postCar(car){
+        try{
+            this.client.post("cars",car);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async deleteCar(id){
+        try{
+            this.client.delete("cars",id);
+        }catch(error){
+            console.log(error);
+        }
+    }
 }
 
 

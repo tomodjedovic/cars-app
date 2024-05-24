@@ -25,7 +25,8 @@ import HttpService from "./HttpService";
 
     async deleteCar(id){
         try{
-            this.client.delete("cars",id);
+         await this.client.delete(`cars/${id}`);
+         
         }catch(error){
             console.log(error);
         }

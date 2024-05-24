@@ -1,10 +1,8 @@
 import React, { ChangeEvent,} from "react";
 import { useDispatch} from "react-redux";
 import {setSearch} from "../store/cars/slice";
-import { useNavigate } from "react-router-dom";
 
 const CarSearch: React.FC = () => {
-    const navigate = useNavigate()
     const dispatch = useDispatch();
    
     const handleSearchByBrand=(e:ChangeEvent<HTMLInputElement>)=>{
